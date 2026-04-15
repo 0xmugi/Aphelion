@@ -16,6 +16,9 @@
 
 ## Overview
 
+
+![Dashboard Preview](./public/preview-1.png)
+
 Pacifica reimagines how traders interact with leveraged positions. Built on top of **Pacifica's official REST API and WebSocket protocol** (`wss://ws.pacifica.fi/ws`), the dashboard pulls live account data, market prices, orderbook depth, and funding rates directly from Pacifica's infrastructure — no third-party data providers, no delays.
 
 Each open position orbits a central equity core — its distance, size, and color encoding leverage, margin utilization, and PnL at a glance. This isn't just a dashboard; it's a **spatial interface for risk**.
@@ -25,12 +28,15 @@ Each open position orbits a central equity core — its distance, size, and colo
 ## Features
 
 ### 🌐 Orbital Portfolio View
+
 Positions rendered as orbiting nodes around your equity center. Size = notional value, distance = leverage, color = PnL direction. Click any node to drill into position details.
 
 ### ⚡ One-Click Trade Execution
+
 Market and limit orders with built-in leverage slider (1x–50x), Take Profit / Stop Loss inputs, and USD/token quantity toggle. Execute directly from the dashboard.
 
 ### 📊 Multi-View Analytics
+
 Switch between five visualization modes:
 
 | View | Description |
@@ -42,12 +48,15 @@ Switch between five visualization modes:
 | **PnL** | Breakdown by position with win rate analysis |
 
 ### 🔔 Intelligent Alerts
+
 Auto-generated risk alerts for high leverage, margin utilization thresholds, and funding rate anomalies. Actionable alerts with one-click position adjustments.
 
 ### 📋 Order Management
+
 View open orders with cancel functionality. Full order history with timestamps, execution prices, and status tracking.
 
 ### 🔗 Wallet Integration
+
 Connect any Solana wallet (Phantom, Solflare, etc.) to pull live positions from supported DEXs. Works in demo mode without a wallet.
 
 ---
@@ -76,6 +85,26 @@ Connect any Solana wallet (Phantom, Solflare, etc.) to pull live positions from 
 
 ## Getting Started
 
+### How to use Aphelion
+
+Aphelion is a trading interface — not a custodial platform. All funds are managed through Pacifica's on-chain infrastructure. Here's how to get started.
+
+**01 — Deposit on Pacifica**
+
+Go to [app.pacifica.fi](https://app.pacifica.fi), connect your Solana wallet, and deposit USDC. Aphelion does not handle deposits — your funds live on Pacifica's smart contracts.
+
+**02 — Launch Aphelion**
+
+Come back here and open the dashboard. Connect the same wallet you used on Pacifica. Aphelion reads your positions, balances, and orders in real-time.
+
+**03 — Trade & Monitor**
+
+Place market or limit orders with up to 50x leverage. Monitor positions in the orbital view, track funding rates, and manage risk — all from one screen.
+
+---
+
+## Installation
+
 ```bash
 # Install dependencies
 npm install
@@ -97,6 +126,6 @@ npm run build
 
 <div align="center">
 
-Developed by 0xmugi
+Developed by [0xMugi](https://x.com/0xmugi_)
 
 </div>
