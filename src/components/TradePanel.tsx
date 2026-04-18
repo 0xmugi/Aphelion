@@ -30,7 +30,7 @@ export function TradePanel({ account, signMessage, selectedSymbol, defaultSymbol
   const [side, setSide] = useState<"bid" | "ask">("bid");
   const [orderType, setOrderType] = useState<OrderType>("market");
   const [amount, setAmount] = useState("");
-  const [amountUnit, setAmountUnit] = useState<AmountUnit>("token");
+  const [amountUnit, setAmountUnit] = useState<AmountUnit>("usd");
   const [leverage, setLeverage] = useState(10);
   const [price, setPrice] = useState("");
   const [slippage, setSlippage] = useState("0.5");
@@ -322,11 +322,22 @@ export function TradePanel({ account, signMessage, selectedSymbol, defaultSymbol
             </div>
           )}
         </div>
-        {amountUnit === "usd" && (
-          <div className="text-[0.4rem] font-mono-system text-muted-foreground/40 mt-0.5">
-            USD = notional size, not margin. Leverage determines margin used.
+        {/* Position size + margin breakdown */}
+        {usdNotional > 0 && (
+          <div className="mt-1.5 grid grid-cols-2 gap-2 px-2 py-1.5 bg-secondary/40 rounded-sm border border-border/20">
+            <div>
+              <div className="text-[0.4rem] font-grotesk text-muted-foreground/60 tracking-wider uppercase">Position Size</div>
+              <div className="text-[0.65rem] font-mono-system text-foreground font-semibold">${usdNotional.toFixed(2)}</div>
+            </div>
+            <div>
+              <div className="text-[0.4rem] font-grotesk text-muted-foreground/60 tracking-wider uppercase">Margin ({leverage}×)</div>
+              <div className="text-[0.65rem] font-mono-system text-idle-amber font-semibold">${(usdNotional / leverage).toFixed(2)}</div>
+            </div>
           </div>
         )}
+        <div className="text-[0.42rem] font-mono-system text-muted-foreground/50 mt-1 leading-tight">
+          Amount = position size (notional). Margin used = position ÷ leverage. Minimum position $10.
+        </div>
       </div>
 
       {/* Slippage (market only) */}

@@ -13,6 +13,7 @@ import { FundingHeatmap } from "@/components/FundingHeatmap";
 import { OrderbookDepth } from "@/components/OrderbookDepth";
 import { PnlBreakdown } from "@/components/PnlBreakdown";
 import { TradePanel } from "@/components/TradePanel";
+import { FloatingTradePanel } from "@/components/FloatingTradePanel";
 import { OpenOrders } from "@/components/OpenOrders";
 import { OrderHistory } from "@/components/OrderHistory";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -193,18 +194,20 @@ const Index = () => {
             </div>
           </div>
           <div className="mt-4">
-            <TradePanel
-              account={wallet.address}
-              signMessage={wallet.signMessage}
-              selectedSymbol={selectedSymbol}
-              defaultSymbol={data.positions[0]?.symbol || "BTC"}
-              markPrice={data.prices.find(p => p.symbol === (selectedSymbol || data.positions[0]?.symbol || "BTC"))
-                ? parseFloat(data.prices.find(p => p.symbol === (selectedSymbol || data.positions[0]?.symbol || "BTC"))!.mark)
-                : undefined}
-              availableSymbols={data.prices.map(p => p.symbol).sort()}
-              symbolPrices={data.prices.map(p => ({ symbol: p.symbol, mark: p.mark })).sort((a, b) => a.symbol.localeCompare(b.symbol))}
-              onSymbolChange={sym => setSelectedSymbol(sym)}
-            />
+            <FloatingTradePanel>
+              <TradePanel
+                account={wallet.address}
+                signMessage={wallet.signMessage}
+                selectedSymbol={selectedSymbol}
+                defaultSymbol={data.positions[0]?.symbol || "BTC"}
+                markPrice={data.prices.find(p => p.symbol === (selectedSymbol || data.positions[0]?.symbol || "BTC"))
+                  ? parseFloat(data.prices.find(p => p.symbol === (selectedSymbol || data.positions[0]?.symbol || "BTC"))!.mark)
+                  : undefined}
+                availableSymbols={data.prices.map(p => p.symbol).sort()}
+                symbolPrices={data.prices.map(p => ({ symbol: p.symbol, mark: p.mark })).sort((a, b) => a.symbol.localeCompare(b.symbol))}
+                onSymbolChange={sym => setSelectedSymbol(sym)}
+              />
+            </FloatingTradePanel>
           </div>
         </div>
 
@@ -303,7 +306,7 @@ const Index = () => {
           </div>
 
           {/* Order History */}
-          <div className="shrink-0 max-h-64 overflow-y-auto border-t border-border/20">
+          <div className="shrink-0 max-h-40 overflow-y-auto border-t border-border/20">
             <OrderHistory orders={data.orderHistory} />
           </div>
 
